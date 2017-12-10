@@ -22,7 +22,7 @@ public class TextWebSocketFrameHandler extends
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx,
-                                TextWebSocketFrame msg) throws Exception { // (1)
+                                TextWebSocketFrame msg) throws Exception {
         Channel incoming = ctx.channel();
         for (Channel channel : channels) {
             if (channel != incoming) {
@@ -34,7 +34,7 @@ public class TextWebSocketFrameHandler extends
     }
 
     @Override
-    public void handlerAdded(ChannelHandlerContext ctx) throws Exception {  // (2)
+    public void handlerAdded(ChannelHandlerContext ctx) throws Exception {
         Channel incoming = ctx.channel();
 
         // Broadcast a message to multiple Channels
@@ -45,7 +45,7 @@ public class TextWebSocketFrameHandler extends
     }
 
     @Override
-    public void handlerRemoved(ChannelHandlerContext ctx) throws Exception {  // (3)
+    public void handlerRemoved(ChannelHandlerContext ctx) throws Exception {
         Channel incoming = ctx.channel();
 
         // Broadcast a message to multiple Channels
@@ -58,20 +58,19 @@ public class TextWebSocketFrameHandler extends
     }
 
     @Override
-    public void channelActive(ChannelHandlerContext ctx) throws Exception { // (5)
+    public void channelActive(ChannelHandlerContext ctx) throws Exception {
         Channel incoming = ctx.channel();
         System.out.println("Client:" + incoming.remoteAddress() + "在线");
     }
 
     @Override
-    public void channelInactive(ChannelHandlerContext ctx) throws Exception { // (6)
+    public void channelInactive(ChannelHandlerContext ctx) throws Exception {
         Channel incoming = ctx.channel();
         System.out.println("Client:" + incoming.remoteAddress() + "掉线");
     }
 
     @Override
-    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause)    // (7)
-            throws Exception {
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
         Channel incoming = ctx.channel();
         System.out.println("Client:" + incoming.remoteAddress() + "异常");
         // 当出现异常就关闭连接

@@ -14,11 +14,10 @@ import io.netty.handler.stream.ChunkedWriteHandler;
  * @author waylau.com
  * @date 2015-3-13
  */
-public class WebsocketChatServerInitializer extends
-        ChannelInitializer<SocketChannel> {    //1
+public class WebsocketChatServerInitializer extends ChannelInitializer<SocketChannel> {
 
     @Override
-    public void initChannel(SocketChannel ch) throws Exception {//2
+    public void initChannel(SocketChannel ch) throws Exception {
         ChannelPipeline pipeline = ch.pipeline();
 
         pipeline.addLast(new HttpServerCodec());
