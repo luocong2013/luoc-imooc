@@ -1,0 +1,12 @@
+server:
+  port: 9000
+  context-path: /learn
+
+
+cupSize: C
+age: 24
+content: "cupSize: ${cupSize}, age: ${age}"
+
+learn:
+  cupSize: C
+  age: 24
