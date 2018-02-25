@@ -17,6 +17,13 @@
         <spring.version>4.3.13.RELEASE</spring.version>
         <!--下面这个是spring aop需要用到的包-->
         <aspectjweaver.version>1.8.13</aspectjweaver.version>
+
+        <!--mysql-->
+        <mysql.version>5.1.44</mysql.version>
+        <hikaricp.version>2.7.4</hikaricp.version>
+
+        <!--plugin-->
+        <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
     </properties>
 
     <dependencies>
@@ -33,7 +40,32 @@
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
             <artifactId>spring-expression</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
             <version>${spring.version}</version>
         </dependency>
         <dependency>
@@ -59,6 +91,37 @@
             <artifactId>aspectjweaver</artifactId>
             <version>${aspectjweaver.version}</version>
         </dependency>
+
+        <!--mysql start-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
+        </dependency>
+        <!--mysql end-->
+
+        <!--HikariCP连接池 start-->
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+            <version>${hikaricp.version}</version>
+        </dependency>
+        <!--HikariCP连接池 end-->
     </dependencies>
 
+    <build>
+        <plugins>
+            <!--maven compiler plugin-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
