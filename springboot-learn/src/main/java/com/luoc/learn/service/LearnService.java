@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 /**
  * @author luoc
  * @version V1.0.0
@@ -32,8 +34,11 @@ public class LearnService {
     }
 
     public void getAge(Integer id) {
-        Learn learn = learnRepository.findOne(id);
-        Integer age = learn.getAge();
+        Optional<Learn> optional = learnRepository.findById(id);
+        if (!optional.isPresent()) {
+            return;
+        }
+        Integer age = optional.get().getAge();
         if (age < 10) {
             throw new LearnException(ResultEnum.PRIMARY_SCHOOL);
         } else if (age > 10 && age < 16) {
@@ -48,6 +53,7 @@ public class LearnService {
      * @return
      */
     public Learn findOne(Integer id) {
-        return learnRepository.findOne(id);
+        Optional<Learn> optional = learnRepository.findById(id);
+        return optional.isPresent() ? optional.get() : null;
     }
 }

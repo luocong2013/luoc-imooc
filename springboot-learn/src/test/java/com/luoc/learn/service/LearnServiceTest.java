@@ -21,7 +21,12 @@ public class LearnServiceTest {
 
     @Test
     public void findOne() {
-        Learn learn = learnService.findOne(16);
-        Assert.assertEquals(new Integer(18), learn.getAge());
+        Learn learn = learnService.findOne(1);
+        Assert.assertEquals(new Integer(21), learn.getAge());
+    }
+
+    @Test
+    public void getAge() {
+        learnService.getAge(6);
     }
 }

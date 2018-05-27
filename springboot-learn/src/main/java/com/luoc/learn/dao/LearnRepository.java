@@ -19,4 +19,5 @@ public interface LearnRepository extends JpaRepository<Learn, Integer> {
      * @return
      */
     List<Learn> findByAge(Integer age);
+
 }

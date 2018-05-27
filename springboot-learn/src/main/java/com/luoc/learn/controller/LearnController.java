@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 /**
  * @author luoc
@@ -65,7 +66,8 @@ public class LearnController {
      */
     @GetMapping(value = "/learn/{id}")
     public JsonResult learnFindOne(@PathVariable("id") Integer id) {
-        return JsonResult.buildSuccessJsonResult(learnRepository.findOne(id));
+        Optional<Learn> optional = learnRepository.findById(id);
+        return JsonResult.buildSuccessJsonResult(optional.isPresent() ? optional.get() : "");
     }
 
     /**
@@ -74,11 +76,13 @@ public class LearnController {
     @PutMapping(value = "/learn/{id}")
     public JsonResult learnUpdate(@PathVariable("id") Integer id,
                                   @RequestParam("cupSize") String cupSize,
-                                  @RequestParam("age") Integer age) {
+                                  @RequestParam("age") Integer age,
+                                  @RequestParam("money") Double money) {
         Learn learn = new Learn();
         learn.setId(id);
         learn.setCupSize(cupSize);
         learn.setAge(age);
+        learn.setMoney(money);
         return JsonResult.buildSuccessJsonResult(learnRepository.save(learn));
     }
 
@@ -87,7 +91,7 @@ public class LearnController {
      */
     @DeleteMapping(value = "/learn/{id}")
     public JsonResult learnDelete(@PathVariable("id") Integer id) {
-        learnRepository.delete(id);
+        learnRepository.deleteById(id);
         return JsonResult.buildSuccessJsonResult();
     }
 
