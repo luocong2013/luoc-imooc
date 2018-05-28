@@ -8,6 +8,7 @@ import org.springframework.context.ApplicationContext;
 import javax.sql.DataSource;
 
 @SpringBootApplication
+//@PropertySources({@PropertySource("classpath:config/web.properties")})//自定义配置文件（这里也可以这样定义，也可以在如MyWebProperties中那样定义）
 public class SpringbootLearnApplication {
 
     public static void main(String[] args) {
